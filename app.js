@@ -24,7 +24,7 @@ const templatesRouter = require('./routes/templatesRoutes');
 const app = express();
 app.set('view engine', 'pug');
 app.set('views', path.join(__dirname, 'views'));
-app.use(methodOverride('_method'));
+app.use(methodOverride('_method')); 
 // 1) GLOBAL MIDDLEWARES
 // Set security HTTP headers
 //  sever static files
