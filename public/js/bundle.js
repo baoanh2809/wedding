@@ -8863,8 +8863,6 @@ function asyncGeneratorStep(gen, resolve, reject, _next, _throw, key, arg) { try
 
 function _asyncToGenerator(fn) { return function () { var self = this, args = arguments; return new Promise(function (resolve, reject) { var gen = fn.apply(self, args); function _next(value) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "next", value); } function _throw(err) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "throw", err); } _next(undefined); }); }; }
 
-var baseUrl = "http://localhost:3000";
-
 var login = /*#__PURE__*/function () {
   var _ref = _asyncToGenerator( /*#__PURE__*/regeneratorRuntime.mark(function _callee(email, password) {
     var res;
@@ -8877,7 +8875,7 @@ var login = /*#__PURE__*/function () {
             _context.next = 4;
             return (0, _axios.default)({
               method: 'POST',
-              url: "".concat(baseUrl, "/api/v1/users/login"),
+              url: "http://localhost:3000/api/v1/users/login",
               data: {
                 email: email,
                 password: password
@@ -8929,7 +8927,7 @@ var logout = /*#__PURE__*/function () {
             _context2.next = 3;
             return (0, _axios.default)({
               method: 'GET',
-              url: "".concat(baseUrl, "/api/v1/users/logout")
+              url: "http://localhost:3000/api/v1/users/logout"
             });
 
           case 3:
@@ -9095,7 +9093,7 @@ var resetPassword = /*#__PURE__*/function () {
             res = _context5.sent;
 
             if (res.data.status === 'success') {
-              (0, _alert.showAlert)('success', 'Password Changed Successfully!');
+              (0, _alert.showAlert)('Your Password Was Changed', 'Password Changed Successfully!');
               window.setTimeout(function () {
                 location.assign('/');
               }, 1500);
@@ -9211,8 +9209,7 @@ function asyncGeneratorStep(gen, resolve, reject, _next, _throw, key, arg) { try
 
 function _asyncToGenerator(fn) { return function () { var self = this, args = arguments; return new Promise(function (resolve, reject) { var gen = fn.apply(self, args); function _next(value) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "next", value); } function _throw(err) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "throw", err); } _next(undefined); }); }; }
 
-// const baseUrl = "http://localhost:3000"
-var baseUrl = "http://localhost:3000";
+var baseUrl = "http://localhost:3000"; // const baseUrl = "https://wedding-production-09d7.up.railway.app"
 
 var eventUser = /*#__PURE__*/function () {
   var _ref = _asyncToGenerator( /*#__PURE__*/regeneratorRuntime.mark(function _callee(eventId, data) {
@@ -9585,6 +9582,7 @@ function asyncGeneratorStep(gen, resolve, reject, _next, _throw, key, arg) { try
 
 function _asyncToGenerator(fn) { return function () { var self = this, args = arguments; return new Promise(function (resolve, reject) { var gen = fn.apply(self, args); function _next(value) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "next", value); } function _throw(err) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "throw", err); } _next(undefined); }); }; }
 
+// const baseUrl = "https://wedding-production-09d7.up.railway.app"
 var baseUrl = "http://localhost:3000";
 
 var createwedding = /*#__PURE__*/function () {
@@ -9856,9 +9854,6 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { de
 function asyncGeneratorStep(gen, resolve, reject, _next, _throw, key, arg) { try { var info = gen[key](arg); var value = info.value; } catch (error) { reject(error); return; } if (info.done) { resolve(value); } else { Promise.resolve(value).then(_next, _throw); } }
 
 function _asyncToGenerator(fn) { return function () { var self = this, args = arguments; return new Promise(function (resolve, reject) { var gen = fn.apply(self, args); function _next(value) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "next", value); } function _throw(err) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "throw", err); } _next(undefined); }); }; }
-
-// const baseUrl = 'http://localhost:3000'
-var baseUrl = "http://localhost:3000";
 
 var createContact = /*#__PURE__*/function () {
   var _ref = _asyncToGenerator( /*#__PURE__*/regeneratorRuntime.mark(function _callee(name, email, content, wedding) {
@@ -10865,31 +10860,54 @@ if (eventForm) eventForm.forEach(function (form) {
 }); //delegation
 
 if (loginForm) {
-  loginForm.addEventListener('submit', function (e) {
-    e.preventDefault();
-    var email = document.getElementById('email').value;
-    var password = document.getElementById('password').value;
-    (0, _login.login)(email, password);
-  });
-}
-
-if (logOutBtn) logOutBtn.addEventListener('click', _login.logout, false);
-
-if (userDataForm) {
-  userDataForm.addEventListener('submit', /*#__PURE__*/function () {
+  loginForm.addEventListener('submit', /*#__PURE__*/function () {
     var _ref10 = _asyncToGenerator( /*#__PURE__*/regeneratorRuntime.mark(function _callee10(e) {
-      var photoTest, form, _form3;
-
+      var email, password;
       return regeneratorRuntime.wrap(function _callee10$(_context10) {
         while (1) {
           switch (_context10.prev = _context10.next) {
+            case 0:
+              e.preventDefault();
+              email = document.getElementById('email').value;
+              password = document.getElementById('password').value; // console.log(email, password)
+
+              _context10.next = 5;
+              return (0, _login.login)(email, password);
+
+            case 5:
+            case "end":
+              return _context10.stop();
+          }
+        }
+      }, _callee10);
+    }));
+
+    return function (_x10) {
+      return _ref10.apply(this, arguments);
+    };
+  }());
+}
+
+if (logOutBtn) {
+  console.log(123);
+  logOutBtn.addEventListener('click', _login.logout, false);
+}
+
+if (userDataForm) {
+  userDataForm.addEventListener('submit', /*#__PURE__*/function () {
+    var _ref11 = _asyncToGenerator( /*#__PURE__*/regeneratorRuntime.mark(function _callee11(e) {
+      var photoTest, form, _form3;
+
+      return regeneratorRuntime.wrap(function _callee11$(_context11) {
+        while (1) {
+          switch (_context11.prev = _context11.next) {
             case 0:
               e.preventDefault();
               document.querySelector('.btn--save-settings').textContent = 'Updating...';
               photoTest = document.getElementById('photo').files[0];
 
               if (!(photoTest == undefined)) {
-                _context10.next = 15;
+                _context11.next = 15;
                 break;
               }
 
@@ -10900,11 +10918,11 @@ if (userDataForm) {
               form.append('address', document.getElementById('address').value);
               form.append('phone', document.getElementById('phone').value);
               form.append('nation', document.getElementById('nation').value);
-              _context10.next = 13;
+              _context11.next = 13;
               return (0, _updateSetting.updateSettings)(form, 'data');
 
             case 13:
-              _context10.next = 24;
+              _context11.next = 24;
               break;
 
             case 15:
@@ -10922,30 +10940,30 @@ if (userDataForm) {
 
               _form3.append('nation', document.getElementById('nation').value);
 
-              _context10.next = 24;
+              _context11.next = 24;
               return (0, _updateSetting.updateSettings)(_form3, 'data');
 
             case 24:
             case "end":
-              return _context10.stop();
+              return _context11.stop();
           }
         }
-      }, _callee10);
+      }, _callee11);
     }));
 
-    return function (_x10) {
-      return _ref10.apply(this, arguments);
+    return function (_x11) {
+      return _ref11.apply(this, arguments);
     };
   }());
 }
 
 if (userPasswordForm) {
   userPasswordForm.addEventListener('submit', /*#__PURE__*/function () {
-    var _ref11 = _asyncToGenerator( /*#__PURE__*/regeneratorRuntime.mark(function _callee11(e) {
+    var _ref12 = _asyncToGenerator( /*#__PURE__*/regeneratorRuntime.mark(function _callee12(e) {
       var passwordCurrent, password, passwordConfirm;
-      return regeneratorRuntime.wrap(function _callee11$(_context11) {
+      return regeneratorRuntime.wrap(function _callee12$(_context12) {
         while (1) {
-          switch (_context11.prev = _context11.next) {
+          switch (_context12.prev = _context12.next) {
             case 0:
               e.preventDefault();
               document.querySelector('.btn--save-password').textContent = 'Updating...';
@@ -10954,15 +10972,15 @@ if (userPasswordForm) {
               passwordConfirm = document.getElementById('password-confirm').value;
 
               if (!(passwordCurrent === password)) {
-                _context11.next = 8;
+                _context12.next = 8;
                 break;
               }
 
               (0, _alert.showAlert)('error', 'Password is not same');
-              return _context11.abrupt("return");
+              return _context12.abrupt("return");
 
             case 8:
-              _context11.next = 10;
+              _context12.next = 10;
               return (0, _updateSetting.updateSettings)({
                 passwordCurrent: passwordCurrent,
                 password: password,
@@ -10975,41 +10993,6 @@ if (userPasswordForm) {
 
             case 12:
             case "end":
-              return _context11.stop();
-          }
-        }
-      }, _callee11);
-    }));
-
-    return function (_x11) {
-      return _ref11.apply(this, arguments);
-    };
-  }());
-} //bookBtn response dataset
-//signup
-
-
-if (signupForm) {
-  signupForm.addEventListener('submit', /*#__PURE__*/function () {
-    var _ref12 = _asyncToGenerator( /*#__PURE__*/regeneratorRuntime.mark(function _callee12(e) {
-      var name1, email1, password1, password2;
-      return regeneratorRuntime.wrap(function _callee12$(_context12) {
-        while (1) {
-          switch (_context12.prev = _context12.next) {
-            case 0:
-              e.preventDefault();
-              name1 = document.getElementById('name1').value;
-              email1 = document.getElementById('email1').value;
-              password1 = document.getElementById('password1').value;
-              password2 = document.getElementById('password2').value;
-              _context12.next = 7;
-              return (0, _login.signup)(name1, email1, password1, password2);
-
-            case 7:
-              console.log(name1, email1, password1, password2);
-
-            case 8:
-            case "end":
               return _context12.stop();
           }
         }
@@ -11018,6 +11001,41 @@ if (signupForm) {
 
     return function (_x12) {
       return _ref12.apply(this, arguments);
+    };
+  }());
+} //bookBtn response dataset
+//signup
+
+
+if (signupForm) {
+  signupForm.addEventListener('submit', /*#__PURE__*/function () {
+    var _ref13 = _asyncToGenerator( /*#__PURE__*/regeneratorRuntime.mark(function _callee13(e) {
+      var name1, email1, password1, password2;
+      return regeneratorRuntime.wrap(function _callee13$(_context13) {
+        while (1) {
+          switch (_context13.prev = _context13.next) {
+            case 0:
+              e.preventDefault();
+              name1 = document.getElementById('name1').value;
+              email1 = document.getElementById('email1').value;
+              password1 = document.getElementById('password1').value;
+              password2 = document.getElementById('password2').value;
+              _context13.next = 7;
+              return (0, _login.signup)(name1, email1, password1, password2);
+
+            case 7:
+              console.log(name1, email1, password1, password2);
+
+            case 8:
+            case "end":
+              return _context13.stop();
+          }
+        }
+      }, _callee13);
+    }));
+
+    return function (_x13) {
+      return _ref13.apply(this, arguments);
     };
   }());
 }
@@ -11049,7 +11067,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "55660" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "64417" + '/');
 
   ws.onmessage = function (event) {
     checkedAssets = {};

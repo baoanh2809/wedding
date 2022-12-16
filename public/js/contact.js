@@ -1,8 +1,6 @@
 import { showAlert } from './alert';
 import axios from 'axios';
 
-// const baseUrl = 'http://localhost:3000'
-const baseUrl = "http://localhost:3000"
 
 export const createContact = async (name, email, content, wedding) => {
          try {

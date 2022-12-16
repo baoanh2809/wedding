@@ -2,14 +2,13 @@
 import { showAlert } from './alert';
 import axios from 'axios';
 
-const baseUrl = "http://localhost:3000"
 
 export const login = async (email,password) => {
     console.log(email,password);
     try{
         const res = await axios({
           method: 'POST',
-          url: `${baseUrl}/api/v1/users/login`,
+          url: `http://localhost:3000/api/v1/users/login`,
           data: {
             email,
             password
@@ -31,7 +30,7 @@ export const logout = async () => {
     try{
         const res = await axios({
           method: 'GET',
-          url: `${baseUrl}/api/v1/users/logout`
+          url: `http://localhost:3000/api/v1/users/logout`
         });
       if ((res.data.status = 'success')) {
         showAlert('success', 'logout success');
@@ -106,7 +105,7 @@ export const resetPassword = async (password, passwordConfirm, token) => {
           }
         });
         if (res.data.status === 'success') {
-            showAlert('success', 'Password Changed Successfully!');
+            showAlert('Your Password Was Changed', 'Password Changed Successfully!');
             window.setTimeout(() => {
               location.assign('/');
             }, 1500);

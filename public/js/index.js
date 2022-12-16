@@ -366,14 +366,18 @@ if (eventForm)
 
 //delegation
 if (loginForm) {
-  loginForm.addEventListener('submit', e => {
+  loginForm.addEventListener('submit', async e => {
     e.preventDefault();
     const email = document.getElementById('email').value;
     const password = document.getElementById('password').value;
-    login(email, password);
+    // console.log(email, password)
+    await login(email, password);
   });
 }
-if (logOutBtn) logOutBtn.addEventListener('click', logout, false);
+if (logOutBtn) {
+  console.log(123);
+  logOutBtn.addEventListener('click', logout, false);
+} 
 
 if (userDataForm) {
   userDataForm.addEventListener('submit', async e => {
